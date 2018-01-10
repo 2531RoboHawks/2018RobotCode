@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
 		auto.addDefault("No Auto", null);
 		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5));
 		auto.addObject("Turn 90deg", new Turn2Angle(90));
-		SmartDashboard.putData("Autonomous Mode", auto);
+		SmartDashboard.putData("Autonomous Select", auto);
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());
