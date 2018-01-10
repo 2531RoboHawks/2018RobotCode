@@ -23,10 +23,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		System.out.println("# Robot");
+		// initailize the subsystems and joysticks / buttons
 		drive = new DriveSystem();
 		oi = new OI();
+		// reset and calibrate the sensors for accuracy
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
+		// add smartdashboard options
 		initSmartDashboard();
 		RobotMap.cam = new Vision();
 	}
@@ -45,8 +48,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		System.out.println("# Autonomous");
-		RobotMap.imu.reset();
-		autocommand = (Command) auto.getSelected();
+		RobotMap.imu.reset();// reset gyro before the robot starts moving
+		autocommand = (Command) auto.getSelected();// get the choice form the smartdashboard selected by the drive team
+		// start the autonomous command
 		if (autocommand != null) {
 			autocommand.start();
 		}
@@ -61,6 +65,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		System.out.println("# Teleop");
+		// stop auto before teleop starts
 		if (autocommand != null) {
 			autocommand.cancel();
 		}
@@ -79,21 +84,21 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void initSmartDashboard() {
-		auto = new SendableChooser<Command>();
+		auto = new SendableChooser<Command>();// initalize the auto chooser
 		auto.addDefault("No Auto", null);
 		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5));
 		auto.addObject("Turn 90deg", new Turn2Angle(90));
-		SmartDashboard.putData("Autonomous Select", auto);
-		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());
-		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());
-		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());
+		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
+		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
+		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
+		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 	}
 
 	public void updateSmartDashboard() {
-		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());
-		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());
-		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());
-		RobotMap.cam.showLive();
+		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
+		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
+		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
+		RobotMap.cam.showLive();// show the camera feed
 	}
 
 }
