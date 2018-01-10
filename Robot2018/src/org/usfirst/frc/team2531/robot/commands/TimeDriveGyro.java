@@ -33,7 +33,7 @@ public class TimeDriveGyro extends Command {
 
 	protected void execute() {
 		double t = pid.compute(RobotMap.imu.getAngleX());
-		// sub system action here
+		Robot.drive.axisdrive(0, -pow, -t);
 		if (System.currentTimeMillis() > endTime)
 			end = true;
 	}
@@ -43,7 +43,7 @@ public class TimeDriveGyro extends Command {
 	}
 
 	protected void end() {
-		// sub system stop action here
+		Robot.drive.stop();
 		System.out.println("-! TimeDrive");
 	}
 

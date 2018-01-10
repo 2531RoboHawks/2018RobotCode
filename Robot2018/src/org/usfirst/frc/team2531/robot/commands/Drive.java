@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot.commands;
 
+import org.usfirst.frc.team2531.robot.OI;
 import org.usfirst.frc.team2531.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,7 +16,7 @@ public class Drive extends Command {
 	}
 
 	protected void execute() {
-		// handle input sub system drive action here
+		Robot.drive.axisdrive(OI.right.getRawAxis(0), OI.right.getRawAxis(1), OI.left.getRawAxis(0));
 	}
 
 	protected boolean isFinished() {
@@ -23,7 +24,7 @@ public class Drive extends Command {
 	}
 
 	protected void end() {
-		// sub system stop action here
+		Robot.drive.stop();
 		System.out.println("-! Drive");
 	}
 
