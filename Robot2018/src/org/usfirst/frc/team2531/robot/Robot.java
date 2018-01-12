@@ -1,10 +1,5 @@
 package org.usfirst.frc.team2531.robot;
 
-import java.util.ArrayList;
-
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.usfirst.frc.team2531.robot.commands.TimeDriveGyro;
 import org.usfirst.frc.team2531.robot.commands.Turn2Angle;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
@@ -102,16 +97,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		RobotMap.cam.showLive();// show the camera feed
-		// proc();// find red
 		System.gc();
-	}
-
-	public void proc() {
-		Mat src = RobotMap.cam.getImage();// get frame
-		RobotMap.cam.setColor(200, 255, 0, 100, 0, 100);// set the color that we want to look for
-		ArrayList<Rect> blobs = RobotMap.cam.RGBgetBlobs(src);// search the image for the color
-		Mat dst = RobotMap.cam.showBlobs(src, blobs, new Scalar(255, 0, 0));// show the results
-		RobotMap.cam.putImage(dst);// send image to smartdashboard
 	}
 
 }
