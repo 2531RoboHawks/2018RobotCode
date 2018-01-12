@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.imu.reset();
 		// add smartdashboard options
 		initSmartDashboard();
-		RobotMap.cam = new Vision();
+		RobotMap.cam = new Vision(160, 120);
 	}
 
 	@Override
@@ -101,8 +101,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
-		// RobotMap.cam.showLive();// show the camera feed
-		proc();// find red
+		RobotMap.cam.showLive();// show the camera feed
+		// proc();// find red
+		System.gc();
 	}
 
 	public void proc() {

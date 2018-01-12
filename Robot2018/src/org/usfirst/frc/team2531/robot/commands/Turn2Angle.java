@@ -24,12 +24,12 @@ public class Turn2Angle extends Command {
 
 	protected void initialize() {
 		System.out.println("-> Turn2Angle");
-		pid.setSetpoint(angle + RobotMap.imu.getAngleX());
+		pid.setSetpoint(angle + RobotMap.imu.getAngleZ());
 	}
 
 	protected void execute() {
-		double p = pid.compute(RobotMap.imu.getAngleX());
-		Robot.drive.axisdrive(0, 0, -p);
+		double p = pid.compute(RobotMap.imu.getAngleZ());
+		Robot.drive.axisdrive(0, 0, p);
 	}
 
 	protected boolean isFinished() {

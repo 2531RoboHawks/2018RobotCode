@@ -27,13 +27,13 @@ public class TimeDriveGyro extends Command {
 		System.out.println("-> TimeDrive");
 		endTime = time + System.currentTimeMillis();
 		end = false;
-		angle = RobotMap.imu.getAngleX();
+		angle = RobotMap.imu.getAngleZ();
 		pid.setSetpoint(angle);
 	}
 
 	protected void execute() {
-		double t = pid.compute(RobotMap.imu.getAngleX());
-		Robot.drive.axisdrive(0, -pow, -t);
+		double t = pid.compute(RobotMap.imu.getAngleZ());
+		Robot.drive.axisdrive(0, -pow, t);
 		if (System.currentTimeMillis() > endTime)
 			end = true;
 	}
