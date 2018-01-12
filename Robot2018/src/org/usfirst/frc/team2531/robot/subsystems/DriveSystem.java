@@ -2,7 +2,7 @@ package org.usfirst.frc.team2531.robot.subsystems;
 
 import org.usfirst.frc.team2531.robot.commands.Drive;
 
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveSystem extends Subsystem {
 
-	CANTalon motorFL = new CANTalon(2);// front left speed controller
-	CANTalon motorFR = new CANTalon(1);// front right speed controller
-	CANTalon motorBL = new CANTalon(4);// back left speed controller
-	CANTalon motorBR = new CANTalon(3);// back right speed controller
+	WPI_TalonSRX motorFL = new WPI_TalonSRX(2);// front left speed controller
+	WPI_TalonSRX motorFR = new WPI_TalonSRX(1);// front right speed controller
+	WPI_TalonSRX motorBL = new WPI_TalonSRX(4);// back left speed controller
+	WPI_TalonSRX motorBR = new WPI_TalonSRX(3);// back right speed controller
 
 	public void initDefaultCommand() {
 		// set drive command to run when nothing else is using the drive system for
