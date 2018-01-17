@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2531.robot;
 
 import org.usfirst.frc.team2531.robot.commands.TimeDriveGyro;
+import org.usfirst.frc.team2531.robot.commands.TrackR;
 import org.usfirst.frc.team2531.robot.commands.Turn2Angle;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 
@@ -28,9 +29,9 @@ public class Robot extends IterativeRobot {
 		// reset and calibrate the sensors for accuracy
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
+		RobotMap.cam = new Vision(640, 480);
 		// add smartdashboard options
 		initSmartDashboard();
-		RobotMap.cam = new Vision(160, 120);
 	}
 
 	@Override
@@ -41,6 +42,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		RobotMap.cam.showLive();// show the camera feed
 		updateSmartDashboard();
 	}
 
@@ -48,7 +50,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("# Autonomous");
 		RobotMap.imu.reset();// reset gyro before the robot starts moving
-		autocommand = (Command) auto.getSelected();// get the choice form the smartdashboard selected by the drive team
+		// autocommand = (Command) auto.getSelected();// get the choice form the
+		// smartdashboard selected by the drive team
+		autocommand = new TrackR(false);
+
 		// start the autonomous command
 		if (autocommand != null) {
 			autocommand.start();
@@ -73,6 +78,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		RobotMap.cam.showLive();// show the camera feed
 		updateSmartDashboard();
 	}
 
@@ -86,6 +92,7 @@ public class Robot extends IterativeRobot {
 		auto.addDefault("No Auto", null);
 		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5));
 		auto.addObject("Turn 90deg", new Turn2Angle(90));
+		auto.addObject("VT", new TrackR(false));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
@@ -96,7 +103,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
-		RobotMap.cam.showLive();// show the camera feed
 		System.gc();
 	}
 
