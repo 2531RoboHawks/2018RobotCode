@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot {
 		auto = new SendableChooser<Command>();// initalize the auto chooser
 		// add command options for auto
 		auto.addDefault("No Auto", null);
-		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5));
+		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5, 0));
 		auto.addObject("Turn 90deg", new Turn2Angle(90));
 		auto.addObject("VT", new TrackR(false));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
