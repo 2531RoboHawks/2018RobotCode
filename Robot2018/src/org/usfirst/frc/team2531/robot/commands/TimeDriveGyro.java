@@ -13,12 +13,13 @@ public class TimeDriveGyro extends Command {
 	private long endTime;
 	private boolean end;
 	private long time;
-	private double pow, angle;
+	private double pow, pow2, angle;
 	private PID pid = new PID(0.04, 0, 0, 0);
 
-	public TimeDriveGyro(long t, double p) {
+	public TimeDriveGyro(long t, double p, double p2) {
 		requires(Robot.drive);
 		pow = p;
+		pow2 = p2;
 		time = t;
 		pid.setOutputLimits(-0.5, 0.5);
 	}
@@ -33,7 +34,7 @@ public class TimeDriveGyro extends Command {
 
 	protected void execute() {
 		double t = pid.compute(RobotMap.imu.getAngleZ());
-		Robot.drive.axisdrive(0, -pow, t);
+		Robot.drive.axisdrive(-pow2, -pow, t);
 		if (System.currentTimeMillis() > endTime)
 			end = true;
 	}
