@@ -14,7 +14,7 @@ public class TimeDriveGyro extends Command {
 	private boolean end;
 	private long time;
 	private double pow, angle;
-	private PID pid = new PID(0.05, 0, 0, 0);
+	private PID pid = new PID(0.04, 0, 0, 0);
 
 	public TimeDriveGyro(long t, double p) {
 		requires(Robot.drive);
