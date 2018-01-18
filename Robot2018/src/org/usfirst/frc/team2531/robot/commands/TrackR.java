@@ -13,7 +13,7 @@ import frclib.pid.PID;
 
 public class TrackR extends Command {
 
-	private PID turn = new PID(0.008, 0.005, 0, 320);
+	private PID turn = new PID(0.005, 0, 0, 320);
 	private double turn_power = 0;
 	private boolean stop = false;
 

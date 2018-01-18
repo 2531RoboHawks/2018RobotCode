@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 		// reset and calibrate the sensors for accuracy
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
-		RobotMap.cam = new Vision(640, 480);
+		RobotMap.cam = new Vision(160, 120);// create camera
 		// add smartdashboard options
 		initSmartDashboard();
 	}
@@ -37,22 +37,22 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		System.out.println("# Disabled");
+		RobotMap.cam.setRes(160, 120);// set the resolution smaller for better fps
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		RobotMap.cam.showLive();// show the camera feed
-		updateSmartDashboard();
+		updateSmartDashboard();// update the values on the dash
 	}
 
 	@Override
 	public void autonomousInit() {
 		System.out.println("# Autonomous");
+		RobotMap.cam.setRes(640, 480);// set to larger resolution for vision tracking
 		RobotMap.imu.reset();// reset gyro before the robot starts moving
-		// autocommand = (Command) auto.getSelected();// get the choice form the
-		// smartdashboard selected by the drive team
-		autocommand = new TrackR(false);
+		autocommand = (Command) auto.getSelected();// get the command from the chooser that was selected
 
 		// start the autonomous command
 		if (autocommand != null) {
@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		updateSmartDashboard();
+		updateSmartDashboard();// update the values on the dash
 	}
 
 	@Override
@@ -79,16 +79,17 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		RobotMap.cam.showLive();// show the camera feed
-		updateSmartDashboard();
+		updateSmartDashboard();// update the values on the dash
 	}
 
 	@Override
 	public void testPeriodic() {
-		updateSmartDashboard();
+		updateSmartDashboard();// update the values on the dash
 	}
 
 	public void initSmartDashboard() {
 		auto = new SendableChooser<Command>();// initalize the auto chooser
+		// add command options for auto
 		auto.addDefault("No Auto", null);
 		auto.addObject("Time Drive Gyro 2sec", new TimeDriveGyro(2000, 0.5));
 		auto.addObject("Turn 90deg", new Turn2Angle(90));
@@ -103,7 +104,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
-		System.gc();
+		System.gc();// clean memory for camera
 	}
 
 }
