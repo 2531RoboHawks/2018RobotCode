@@ -15,21 +15,22 @@ public class Turn2Angle extends Command {
 	private double angle;
 
 	public Turn2Angle(double degrees) {
-		requires(Robot.drive);
+		requires(Robot.drive);// requires drive subsystem
 		angle = degrees;
-		pid.setOutputLimits(-0.5, 0.5);
-		pid.setOnTargetCount(10);
-		pid.setOnTargetOffset(1);
+		pid.setOutputLimits(-0.5, 0.5);// limit how fast robot turns
+		pid.setOnTargetCount(10);// set the about of times to check for on target
+		pid.setOnTargetOffset(1);// set the range that the input is from the setpoint to be ontarget
 	}
 
 	protected void initialize() {
 		System.out.println("-> Turn2Angle");
-		pid.setSetpoint(angle + RobotMap.imu.getAngleZ());
+		RobotMap.heading += angle;// add the angle to the heading
+		pid.setSetpoint(RobotMap.heading);// set the setpoint or target for the robot to goto
 	}
 
 	protected void execute() {
-		double p = pid.compute(RobotMap.imu.getAngleZ());
-		Robot.drive.axisdrive(0, 0, p);
+		double p = pid.compute(RobotMap.imu.getAngleZ());// compute pid algorithm
+		Robot.drive.axisdrive(0, 0, p);// move robot
 	}
 
 	protected boolean isFinished() {
@@ -37,7 +38,7 @@ public class Turn2Angle extends Command {
 	}
 
 	protected void end() {
-		Robot.drive.stop();
+		Robot.drive.stop();// stop all motors
 		System.out.println("-! Turn2Angle");
 	}
 
