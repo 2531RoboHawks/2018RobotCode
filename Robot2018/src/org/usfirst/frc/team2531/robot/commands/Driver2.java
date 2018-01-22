@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DS3 extends CommandGroup {
+public class Driver2 extends CommandGroup {
 
-	public DS3(boolean left) {
-
-	}
+    public Driver2(boolean left) {
+        
+    }
 }
