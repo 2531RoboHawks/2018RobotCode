@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot;
 
+import org.usfirst.frc.team2531.robot.commands.AutoPicker;
 import org.usfirst.frc.team2531.robot.commands.Square;
 import org.usfirst.frc.team2531.robot.commands.Square2;
 import org.usfirst.frc.team2531.robot.commands.ThereBack;
@@ -104,6 +105,9 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Test Square2", new Square2());
 		auto.addObject("Test There Back", new ThereBack());
 		auto.addObject("Test VT", new TrackR(false));
+		auto.addObject("Driver1", new AutoPicker(1));
+		auto.addObject("Driver2", new AutoPicker(2));
+		auto.addObject("Driver3", new AutoPicker(3));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
