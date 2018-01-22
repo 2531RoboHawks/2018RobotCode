@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import frclib.sensors.ADIS16448;
 import frclib.vision.Vision;
 
@@ -9,4 +10,5 @@ public class RobotMap {
 	public static double heading = 0;
 	public static double velocity = 0;
 	public static String gameData;
+	public static BuiltInAccelerometer acc = new BuiltInAccelerometer();
 }

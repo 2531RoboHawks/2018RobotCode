@@ -124,5 +124,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Speed", RobotMap.velocity);// print speed
 		System.gc();// clean memory for camera
 	}
+	
+	public void getspeed() {
+		RobotMap.acc.
+	}
 
 }
