@@ -113,6 +113,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
+		SmartDashboard.putNumber("Speed", RobotMap.velocity);// print speed
 	}
 
 	public void updateSmartDashboard() {
@@ -120,6 +121,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
+		SmartDashboard.putNumber("Speed", RobotMap.velocity);// print speed
 		System.gc();// clean memory for camera
 	}
 

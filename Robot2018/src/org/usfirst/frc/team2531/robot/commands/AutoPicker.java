@@ -20,22 +20,22 @@ public class AutoPicker extends Command {
 
 	protected void initialize() {
 		System.out.println("-> AutoPicker");
+		System.out.println("GameData: " + RobotMap.gameData);
 	}
 
 	protected void execute() {
+		System.out.println("Driver: " + ds + " Switch 1:" + RobotMap.gameData.charAt(0) + " Scale:"
+				+ RobotMap.gameData.charAt(1) + " Switch 2:" + RobotMap.gameData.charAt(2));
 		if (RobotMap.gameData.charAt(1) == 'R') {
 			// right
 			switch (ds) {
 			case 1:
-				System.out.println("Driver1 Scale R");
 				c = new Driver1(false);
 				break;
 			case 2:
-				System.out.println("Driver2 Scale R");
 				c = new Driver2(false);
 				break;
 			case 3:
-				System.out.println("Driver3 Scale R");
 				c = new Driver3(false);
 				break;
 			default:
@@ -45,15 +45,12 @@ public class AutoPicker extends Command {
 			// left
 			switch (ds) {
 			case 1:
-				System.out.println("Driver1 Scale L");
 				c = new Driver1(true);
 				break;
 			case 2:
-				System.out.println("Driver2 Scale L");
 				c = new Driver2(true);
 				break;
 			case 3:
-				System.out.println("Driver3 Scale L");
 				c = new Driver3(true);
 				break;
 			default:

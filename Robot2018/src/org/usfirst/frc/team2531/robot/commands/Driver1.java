@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Driver1 extends CommandGroup {
 
-    public Driver1(boolean left) {
-        
-    }
+	public Driver1(boolean left) {
+		addSequential(new Turn2Angle(90));
+	}
 }
