@@ -8,7 +8,8 @@ public class RobotMap {
 	public static ADIS16448 imu = new ADIS16448(); // gyro and accel class
 	public static Vision cam; // vision class
 	public static double heading = 0;
-	public static double velocity = 0;
+	public static double speedx = 0;
+	public static double speedy = 0;
 	public static String gameData;
 	public static BuiltInAccelerometer acc = new BuiltInAccelerometer();
 }
