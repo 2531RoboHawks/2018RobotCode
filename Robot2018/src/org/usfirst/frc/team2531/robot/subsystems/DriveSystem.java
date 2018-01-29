@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot.subsystems;
 
+import org.usfirst.frc.team2531.robot.OI;
 import org.usfirst.frc.team2531.robot.commands.Drive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -71,8 +72,8 @@ public class DriveSystem extends Subsystem {
 		double pBL = (Math.abs(Math.sin(a)) * y) + (Math.abs(Math.cos(a)) * x) + r;
 		double pBR = (Math.abs(Math.sin(a)) * y) - (Math.abs(Math.cos(a)) * x) - r;
 		motorFL.set(pFL);
-		motorFR.set(pFR);
 		motorBL.set(pBL);
+		motorFR.set(pFR);
 		motorBR.set(pBR);
 	}
 
