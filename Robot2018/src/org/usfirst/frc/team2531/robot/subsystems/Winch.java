@@ -26,5 +26,3 @@ public class Winch extends Subsystem {
 		motor2.set(0);
 	}
 }
-
-}
