@@ -14,7 +14,7 @@ public class TimeDrive extends Command {
 	private boolean end;
 	private long time;
 	private double powY, powX;
-	private PID pid = new PID(0.04, 0, 0, 0);
+	private PID pid = new PID(0.05, 0, 0, 0);
 
 	public TimeDrive(long t, double pY, double pX) {
 		requires(Robot.drive);
