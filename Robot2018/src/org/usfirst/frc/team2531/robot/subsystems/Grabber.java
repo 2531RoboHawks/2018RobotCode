@@ -14,7 +14,6 @@ public class Grabber extends Subsystem {
 	private Solenoid rightopen = new Solenoid(3);
 
 	public void initDefaultCommand() {
-
 	}
 
 	public void set(boolean open) {
@@ -22,5 +21,9 @@ public class Grabber extends Subsystem {
 		leftopen.set(open);
 		rightclose.set(!open);
 		rightopen.set(open);
+	}
+
+	public boolean get() {
+		return leftclose.get();
 	}
 }

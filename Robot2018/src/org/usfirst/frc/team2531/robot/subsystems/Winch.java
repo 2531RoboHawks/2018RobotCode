@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Winch extends Subsystem {
 
-	private WPI_TalonSRX motor1 = new WPI_TalonSRX(5);
-	private WPI_TalonSRX motor2 = new WPI_TalonSRX(6);
+	private WPI_TalonSRX motor1 = new WPI_TalonSRX(7);
+	private WPI_TalonSRX motor2 = new WPI_TalonSRX(8);
 
 	public void initDefaultCommand() {
 

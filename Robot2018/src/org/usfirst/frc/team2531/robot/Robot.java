@@ -5,9 +5,13 @@ import org.usfirst.frc.team2531.robot.commands.Square;
 import org.usfirst.frc.team2531.robot.commands.Square2;
 import org.usfirst.frc.team2531.robot.commands.ThereBack;
 import org.usfirst.frc.team2531.robot.commands.TimeDrive;
-import org.usfirst.frc.team2531.robot.commands.TrackR;
+import org.usfirst.frc.team2531.robot.commands.TrackF;
+import org.usfirst.frc.team2531.robot.commands.TrackX;
 import org.usfirst.frc.team2531.robot.commands.Turn2Angle;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
+import org.usfirst.frc.team2531.robot.subsystems.Grabber;
+import org.usfirst.frc.team2531.robot.subsystems.Lift;
+import org.usfirst.frc.team2531.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,6 +25,9 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveSystem drive;
+	public static Grabber grabber;
+	public static Lift lift;
+	public static Winch winch;
 
 	SendableChooser<Command> auto;
 	Command autocommand;
@@ -30,6 +37,9 @@ public class Robot extends IterativeRobot {
 		System.out.println("# Robot");
 		// initialize the subsystems and joysticks / buttons
 		drive = new DriveSystem();
+		grabber = new Grabber();
+		lift = new Lift();
+		winch = new Winch();
 		oi = new OI();
 		// reset and calibrate the sensors for accuracy
 		RobotMap.imu.calibrate();
@@ -104,7 +114,8 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Test Square", new Square());
 		auto.addObject("Test Square2", new Square2());
 		auto.addObject("Test There Back", new ThereBack());
-		auto.addObject("Test VT", new TrackR(false));
+		auto.addObject("Test VT F", new TrackF(false));
+		auto.addObject("Test VT X", new TrackX(false));
 		auto.addObject("Driver1", new AutoPicker(1));
 		auto.addObject("Driver2", new AutoPicker(2));
 		auto.addObject("Driver3", new AutoPicker(3));
