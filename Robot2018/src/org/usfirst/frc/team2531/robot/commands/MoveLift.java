@@ -13,7 +13,7 @@ public class MoveLift extends Command {
 
 	private boolean finish = false;
 	private double enc = 0;
-	private PID pid = new PID(0.001, 0, 0, 0);
+	private PID pid = new PID(0.004, 0, 0, 0);
 
 	public MoveLift(double encoder, boolean finish) {
 		requires(Robot.lift);
@@ -25,13 +25,17 @@ public class MoveLift extends Command {
 		System.out.println("-> Move Lift");
 		pid.setOnTargetCount(10);
 		pid.setOnTargetOffset(5);
-		pid.setOutputLimits(-0.2, 0.2);
+		pid.setOutputLimits(0, 0.5);
 		pid.setSetpoint(enc);
 	}
 
 	protected void execute() {
 		double pow = pid.compute(RobotMap.liftencoder.getDistance());
-		Robot.lift.set(pow);
+		if ((RobotMap.lowerliftlimit.get() && pow < 0)) {
+			Robot.lift.stop();
+		} else {
+			Robot.lift.set(pow);
+		}
 	}
 
 	protected boolean isFinished() {

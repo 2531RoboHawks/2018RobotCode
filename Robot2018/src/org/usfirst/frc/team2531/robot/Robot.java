@@ -131,6 +131,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
 		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
 		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
+		SmartDashboard.putBoolean("Lift Down", !RobotMap.lowerliftlimit.get());
+		SmartDashboard.putBoolean("Lift Up", !RobotMap.upperliftlimit.get());
 	}
 
 	public void updateSmartDashboard() {
@@ -140,6 +142,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
 		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
 		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
+		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());
+		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());
 		System.gc();// clean memory for camera
 	}
 

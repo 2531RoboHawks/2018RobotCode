@@ -13,7 +13,7 @@ public class Lift extends Subsystem {
 	private WPI_TalonSRX motor2 = new WPI_TalonSRX(6);
 
 	public void initDefaultCommand() {
-
+		// setDefaultCommand(new MoveLift(0, false));
 	}
 
 	public void set(double power) {

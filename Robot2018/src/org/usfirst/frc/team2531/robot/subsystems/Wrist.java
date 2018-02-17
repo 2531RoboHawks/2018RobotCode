@@ -12,7 +12,7 @@ public class Wrist extends Subsystem {
 	private WPI_TalonSRX motor = new WPI_TalonSRX(9);
 
 	public void initDefaultCommand() {
-
+		// setDefaultCommand(new MoveWrist(0, false));
 	}
 
 	public void set(double power) {

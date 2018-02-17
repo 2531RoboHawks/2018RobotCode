@@ -66,10 +66,10 @@ public class DriveSystem extends Subsystem {
 	 */
 	public void axisdrive(double x, double y, double r) {
 		double a = Math.atan2(y, x);
-		double pFL = (Math.abs(Math.sin(a)) * y) - (Math.abs(Math.cos(a)) * x) + r;
-		double pFR = (Math.abs(Math.sin(a)) * y) + (Math.abs(Math.cos(a)) * x) - r;
-		double pBL = (Math.abs(Math.sin(a)) * y) + (Math.abs(Math.cos(a)) * x) + r;
-		double pBR = (Math.abs(Math.sin(a)) * y) - (Math.abs(Math.cos(a)) * x) - r;
+		double pFL = -(Math.abs(Math.sin(a)) * y) - (Math.abs(Math.cos(a)) * x) + r;
+		double pFR = (Math.abs(Math.sin(a)) * y) - (Math.abs(Math.cos(a)) * x) + r;
+		double pBL = -(Math.abs(Math.sin(a)) * y) + (Math.abs(Math.cos(a)) * x) + r;
+		double pBR = (Math.abs(Math.sin(a)) * y) + (Math.abs(Math.cos(a)) * x) + r;
 		motorFL.set(pFL);
 		motorBL.set(pBL);
 		motorFR.set(pFR);

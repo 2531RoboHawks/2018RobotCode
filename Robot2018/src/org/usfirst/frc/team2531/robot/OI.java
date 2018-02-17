@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot;
 
+import org.usfirst.frc.team2531.robot.commands.MoveGrabber;
 import org.usfirst.frc.team2531.robot.commands.MoveLift;
 import org.usfirst.frc.team2531.robot.commands.MoveWrist;
 
@@ -12,13 +13,19 @@ public class OI {
 	public static Joystick left = new Joystick(1);
 	public static Joystick gamepad = new Joystick(2);
 
-	private static JoystickButton lifttrigger = new JoystickButton(right, 1);
-	private static JoystickButton wristtrigger = new JoystickButton(right, 2);
+	private static JoystickButton lifttrigger = new JoystickButton(right, 2);
+	private static JoystickButton wristtrigger = new JoystickButton(right, 3);
+	private static JoystickButton wristclawtrigger = new JoystickButton(right, 4);
+
+	// wrist 0-600
+	// lift 0-2000
 
 	public OI() {
-		lifttrigger.whenPressed(new MoveLift(1000, false));
-		lifttrigger.whenReleased(new MoveLift(0, false));
-		wristtrigger.whenPressed(new MoveWrist(800, false));
-		wristtrigger.whenReleased(new MoveWrist(0, false));
+		lifttrigger.whenPressed(new MoveLift(1500, true));
+		lifttrigger.whenReleased(new MoveLift(0, true));
+		wristtrigger.whenPressed(new MoveWrist(300, true));
+		wristtrigger.whenReleased(new MoveWrist(0, true));
+		wristclawtrigger.whenPressed(new MoveGrabber(true));
+		wristclawtrigger.whenReleased(new MoveGrabber(false));
 	}
 }
