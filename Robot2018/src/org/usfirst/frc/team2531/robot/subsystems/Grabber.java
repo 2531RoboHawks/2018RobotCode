@@ -8,22 +8,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Grabber extends Subsystem {
 
-	private Solenoid leftclose = new Solenoid(0);
-	private Solenoid leftopen = new Solenoid(1);
-	private Solenoid rightclose = new Solenoid(2);
-	private Solenoid rightopen = new Solenoid(3);
+	private Solenoid open = new Solenoid(0);
 
 	public void initDefaultCommand() {
 	}
 
-	public void set(boolean open) {
-		leftclose.set(!open);
-		leftopen.set(open);
-		rightclose.set(!open);
-		rightopen.set(open);
+	public void set(boolean on) {
+		open.set(on);
 	}
 
 	public boolean get() {
-		return leftclose.get();
+		return open.get();
 	}
 }

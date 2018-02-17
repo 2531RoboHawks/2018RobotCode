@@ -12,6 +12,7 @@ import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team2531.robot.subsystems.Grabber;
 import org.usfirst.frc.team2531.robot.subsystems.Lift;
 import org.usfirst.frc.team2531.robot.subsystems.Winch;
+import org.usfirst.frc.team2531.robot.subsystems.Wrist;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Grabber grabber;
 	public static Lift lift;
 	public static Winch winch;
+	public static Wrist wrist;
 
 	SendableChooser<Command> auto;
 	Command autocommand;
@@ -40,11 +42,14 @@ public class Robot extends IterativeRobot {
 		grabber = new Grabber();
 		lift = new Lift();
 		winch = new Winch();
+		wrist = new Wrist();
 		oi = new OI();
 		// reset and calibrate the sensors for accuracy
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
 		RobotMap.cam = new Vision(160, 120);// create camera
+		RobotMap.liftencoder.reset();
+		RobotMap.wristencoder.reset();
 		// add smartdashboard options
 		initSmartDashboard();
 	}
@@ -124,6 +129,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
+		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
+		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
 	}
 
 	public void updateSmartDashboard() {
@@ -131,6 +138,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
+		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
+		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
 		System.gc();// clean memory for camera
 	}
 

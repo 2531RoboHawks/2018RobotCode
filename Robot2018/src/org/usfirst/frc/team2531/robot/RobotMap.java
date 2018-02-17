@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2531.robot;
 
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.Ultrasonic.Unit;
+import edu.wpi.first.wpilibj.Encoder;
 import frclib.sensors.ADIS16448;
 import frclib.vision.Vision;
 
@@ -12,5 +11,6 @@ public class RobotMap {
 	public static double speedx = 0;
 	public static double speedy = 0;
 	public static String gameData;
-	public static Ultrasonic ult = new Ultrasonic(1, 0, Unit.kInches);
+	public static Encoder wristencoder = new Encoder(0, 1);
+	public static Encoder liftencoder = new Encoder(2, 3);
 }
