@@ -11,7 +11,6 @@ import org.usfirst.frc.team2531.robot.commands.Turn2Angle;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team2531.robot.subsystems.Grabber;
 import org.usfirst.frc.team2531.robot.subsystems.Lift;
-import org.usfirst.frc.team2531.robot.subsystems.Winch;
 import org.usfirst.frc.team2531.robot.subsystems.Wrist;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -28,7 +27,6 @@ public class Robot extends IterativeRobot {
 	public static DriveSystem drive;
 	public static Grabber grabber;
 	public static Lift lift;
-	public static Winch winch;
 	public static Wrist wrist;
 
 	SendableChooser<Command> auto;
@@ -41,7 +39,6 @@ public class Robot extends IterativeRobot {
 		drive = new DriveSystem();
 		grabber = new Grabber();
 		lift = new Lift();
-		winch = new Winch();
 		wrist = new Wrist();
 		oi = new OI();
 		// reset and calibrate the sensors for accuracy

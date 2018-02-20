@@ -16,4 +16,7 @@ public class RobotMap {
 	public static Encoder liftencoder = new Encoder(2, 3);
 	public static DigitalInput lowerliftlimit = new DigitalInput(4);
 	public static DigitalInput upperliftlimit = new DigitalInput(5);
+
+	public static double liftpos = 0;
+	public static double wristpos = 0;
 }

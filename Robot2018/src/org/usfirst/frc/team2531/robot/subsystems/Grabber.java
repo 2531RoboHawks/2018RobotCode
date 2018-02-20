@@ -9,12 +9,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Grabber extends Subsystem {
 
 	private Solenoid open = new Solenoid(0);
+	private Solenoid close = new Solenoid(1);
 
 	public void initDefaultCommand() {
 	}
 
 	public void set(boolean on) {
 		open.set(on);
+		close.set(!on);
 	}
 
 	public boolean get() {
