@@ -29,7 +29,7 @@ public class HoldWrist extends Command {
 		System.out.println("-> Hold Wrist");
 		pid.setOnTargetCount(10);
 		pid.setOnTargetOffset(5);
-		pid.setOutputLimits(-1, 1);
+		pid.setOutputLimits(-0.5, 0.5);
 		if (set) {
 			RobotMap.wristpos = enc;
 		}
@@ -37,12 +37,15 @@ public class HoldWrist extends Command {
 	}
 
 	protected void execute() {
-		double pow = pid.compute(RobotMap.liftencoder.getDistance());
-		Robot.wrist.set(pow);
+		double pow = pid.compute(RobotMap.wristencoder.getDistance());
+		Robot.wrist.set(-pow);
 	}
 
 	protected boolean isFinished() {
-		return pid.onTarget();
+		if (set) {
+			return pid.onTarget();
+		}
+		return false;
 	}
 
 	protected void end() {

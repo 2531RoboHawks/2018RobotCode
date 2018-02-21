@@ -29,7 +29,7 @@ public class HoldLift extends Command {
 		System.out.println("-> Hold Lift");
 		pid.setOnTargetCount(10);
 		pid.setOnTargetOffset(20);
-		pid.setOutputLimits(-0.4, 1);
+		pid.setOutputLimits(-0.4, 0.8);
 		if (set) {
 			RobotMap.liftpos = enc;
 		}
@@ -46,7 +46,10 @@ public class HoldLift extends Command {
 	}
 
 	protected boolean isFinished() {
-		return pid.onTarget();
+		if (set) {
+			return pid.onTarget();
+		}
+		return false;
 	}
 
 	protected void end() {

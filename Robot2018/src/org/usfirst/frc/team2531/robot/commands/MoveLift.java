@@ -27,7 +27,7 @@ public class MoveLift extends Command {
 		} else {
 			Robot.lift.set(pow);
 		}
-
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
 	}
 
 	protected boolean isFinished() {

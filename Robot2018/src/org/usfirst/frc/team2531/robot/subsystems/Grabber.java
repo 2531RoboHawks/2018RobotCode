@@ -12,6 +12,7 @@ public class Grabber extends Subsystem {
 	private Solenoid close = new Solenoid(1);
 
 	public void initDefaultCommand() {
+		// setDefaultCommand(new MoveGrabber(false));
 	}
 
 	public void set(boolean on) {

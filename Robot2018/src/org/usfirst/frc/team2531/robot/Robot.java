@@ -45,8 +45,12 @@ public class Robot extends IterativeRobot {
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
 		RobotMap.cam = new Vision(160, 120);// create camera
+		// reset encoders
 		RobotMap.liftencoder.reset();
 		RobotMap.wristencoder.reset();
+		// get encoder positions;
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 		// add smartdashboard options
 		initSmartDashboard();
 	}
@@ -55,8 +59,11 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		System.out.println("# Disabled");
 		RobotMap.cam.setRes(160, 120);// set the resolution smaller for better fps
-		RobotMap.imu.reset();
-		RobotMap.heading = 0;
+		// get encoder positions;
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
+		RobotMap.imu.reset();// reset imu
+		RobotMap.heading = 0;// reset heading
 	}
 
 	@Override
@@ -71,7 +78,10 @@ public class Robot extends IterativeRobot {
 		System.out.println("# Autonomous");
 		RobotMap.cam.setRes(640, 480);// set to larger resolution for vision tracking
 		RobotMap.imu.reset();// reset gyro before the robot starts moving
-		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();
+		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();// game data retreval
+		// get encoder positions;
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 		autocommand = (Command) auto.getSelected();// get the command from the chooser that was selected
 		// start the autonomous command
 		if (autocommand != null) {
@@ -88,6 +98,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		System.out.println("# Teleop");
+		// get encoder positions;
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 		// stop auto before teleop starts
 		if (autocommand != null) {
 			autocommand.cancel();
@@ -128,6 +141,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
 		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
 		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
+		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);
+		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos);
 		SmartDashboard.putBoolean("Lift Down", !RobotMap.lowerliftlimit.get());
 		SmartDashboard.putBoolean("Lift Up", !RobotMap.upperliftlimit.get());
 	}
@@ -139,6 +154,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
 		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
 		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
+		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);
+		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos);
 		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());
 		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());
 		System.gc();// clean memory for camera
