@@ -134,6 +134,7 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Driver1", new AutoPicker(1));
 		auto.addObject("Driver2", new AutoPicker(2));
 		auto.addObject("Driver3", new AutoPicker(3));
+		auto.addObject("Baseline", new TimeDrive(2000, 1, 0));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
