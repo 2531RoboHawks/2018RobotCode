@@ -22,4 +22,8 @@ public class RobotMap {
 
 	public static double mousex = 0;
 	public static double mousey = 0;
+
+	public static double p = 0.05;
+	public static double i = 0;
+	public static double d = 0;
 }

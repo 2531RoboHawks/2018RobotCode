@@ -37,6 +37,7 @@ public class HoldLift extends Command {
 	}
 
 	protected void execute() {
+		pid.setTunings(RobotMap.p, RobotMap.i, RobotMap.d);
 		double pow = pid.compute(RobotMap.liftencoder.getDistance());
 		if ((RobotMap.lowerliftlimit.get() && pow < 0) || (RobotMap.upperliftlimit.get() && pow > 0)) {
 			Robot.lift.stop();
