@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2531.robot;
 
+import org.usfirst.frc.team2531.robot.commands.HoldLift;
 import org.usfirst.frc.team2531.robot.commands.MoveGrabber;
 import org.usfirst.frc.team2531.robot.commands.MoveLift;
 import org.usfirst.frc.team2531.robot.commands.MoveWrist;
@@ -30,6 +31,7 @@ public class OI {
 		A.whileHeld(new MoveLift(-0.4));
 		L1.whileHeld(new MoveWrist(-0.5));
 		R1.whileHeld(new MoveWrist(0.5));
+		X.whileHeld(new HoldLift());
 		open.whileHeld(new MoveGrabber(true));
 		close.whileHeld(new MoveGrabber(false));
 	}
