@@ -19,4 +19,7 @@ public class RobotMap {
 
 	public static double liftpos = 0;
 	public static double wristpos = 0;
+
+	public static double mousex = 0;
+	public static double mousey = 0;
 }

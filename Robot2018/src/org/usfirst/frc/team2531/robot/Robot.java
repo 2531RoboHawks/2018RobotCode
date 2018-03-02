@@ -45,6 +45,9 @@ public class Robot extends IterativeRobot {
 		RobotMap.imu.calibrate();
 		RobotMap.imu.reset();
 		RobotMap.cam = new Vision(160, 120);// create camera
+		// set encoder scales
+		RobotMap.liftencoder.setDistancePerPulse(0.1);
+		RobotMap.wristencoder.setDistancePerPulse(1);
 		// reset encoders
 		RobotMap.liftencoder.reset();
 		RobotMap.wristencoder.reset();
@@ -161,5 +164,4 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());
 		System.gc();// clean memory for camera
 	}
-
 }
