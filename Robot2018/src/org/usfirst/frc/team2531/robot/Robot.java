@@ -1,13 +1,7 @@
 package org.usfirst.frc.team2531.robot;
 
 import org.usfirst.frc.team2531.robot.commands.AutoPicker;
-import org.usfirst.frc.team2531.robot.commands.Square;
-import org.usfirst.frc.team2531.robot.commands.Square2;
-import org.usfirst.frc.team2531.robot.commands.ThereBack;
 import org.usfirst.frc.team2531.robot.commands.TimeDrive;
-import org.usfirst.frc.team2531.robot.commands.TrackF;
-import org.usfirst.frc.team2531.robot.commands.TrackX;
-import org.usfirst.frc.team2531.robot.commands.Turn2Angle;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team2531.robot.subsystems.Grabber;
 import org.usfirst.frc.team2531.robot.subsystems.Lift;
@@ -126,14 +120,6 @@ public class Robot extends IterativeRobot {
 		auto = new SendableChooser<Command>();// initalize the auto chooser
 		// add command options for auto
 		auto.addDefault("No Auto", null);
-		auto.addObject("Test Time Drive Gyro 1sec S", new TimeDrive(1000, 0, 1));
-		auto.addObject("Test Time Drive Gyro 1sec F", new TimeDrive(1000, 1, 0));
-		auto.addObject("Test Turn 90deg", new Turn2Angle(90));
-		auto.addObject("Test Square", new Square());
-		auto.addObject("Test Square2", new Square2());
-		auto.addObject("Test There Back", new ThereBack());
-		auto.addObject("Test VT F", new TrackF(false));
-		auto.addObject("Test VT X", new TrackX(false));
 		auto.addObject("Driver1", new AutoPicker(1));
 		auto.addObject("Driver2", new AutoPicker(2));
 		auto.addObject("Driver3", new AutoPicker(3));
@@ -143,12 +129,13 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
-		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
-		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
-		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);
-		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos);
-		SmartDashboard.putBoolean("Lift Down", !RobotMap.lowerliftlimit.get());
-		SmartDashboard.putBoolean("Lift Up", !RobotMap.upperliftlimit.get());
+		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());// print wrist encoder
+		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());// print lift encoder
+		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);// print wrist setpoint
+		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos); // print lift setpoint
+		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());// print limit switch lift down
+		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());// print limit switch lift up
+		// add PID for lift to the dashboard
 		SmartDashboard.putNumber("P", RobotMap.p);
 		SmartDashboard.putNumber("I", RobotMap.i);
 		SmartDashboard.putNumber("D", RobotMap.d);
@@ -159,15 +146,17 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
 		SmartDashboard.putNumber("AngleZ", RobotMap.imu.getAngleZ());// print gyro z
 		SmartDashboard.putNumber("Head", RobotMap.heading);// print heading
-		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());
-		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());
-		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);
-		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos);
-		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());
-		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());
+		SmartDashboard.putNumber("Wrist Encoder", RobotMap.wristencoder.getDistance());// print wrist encoder
+		SmartDashboard.putNumber("Lift Encoder", RobotMap.liftencoder.getDistance());// print lift encoder
+		SmartDashboard.putNumber("Wrist Position", RobotMap.wristpos);// print wrist setpoint
+		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos); // print lift setpoint
+		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());// print limit switch lift down
+		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());// print limit switch lift up
+		// get PID values for lift
 		RobotMap.p = SmartDashboard.getNumber("P", 0);
 		RobotMap.i = SmartDashboard.getNumber("I", 0);
 		RobotMap.d = SmartDashboard.getNumber("D", 0);
+		// print PID for lift for easy tuning
 		SmartDashboard.putNumber("P", RobotMap.p);
 		SmartDashboard.putNumber("I", RobotMap.i);
 		SmartDashboard.putNumber("D", RobotMap.d);
