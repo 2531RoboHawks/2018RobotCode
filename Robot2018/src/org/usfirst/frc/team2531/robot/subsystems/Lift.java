@@ -5,7 +5,6 @@ import org.usfirst.frc.team2531.robot.commands.HoldLift;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,7 +21,6 @@ public class Lift extends Subsystem {
 	public void set(double power) {
 		motor1.set(power);
 		motor2.set(power);
-		SmartDashboard.putNumber("lift power", power);
 	}
 
 	public void stop() {
