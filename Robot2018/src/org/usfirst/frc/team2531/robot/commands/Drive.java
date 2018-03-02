@@ -16,7 +16,11 @@ public class Drive extends Command {
 	}
 
 	protected void execute() {
-		Robot.drive.axisdrive(-OI.stick.getRawAxis(0), OI.stick.getRawAxis(1), OI.stick.getRawAxis(3));
+		if (!OI.stick.getRawButton(1)) {
+			Robot.drive.axisdrive(-OI.stick.getRawAxis(0), OI.stick.getRawAxis(1), OI.stick.getRawAxis(3));
+		} else {
+			Robot.drive.axisdrive(-OI.stick.getRawAxis(0) / 2, OI.stick.getRawAxis(1) / 2, OI.stick.getRawAxis(3) / 2);
+		}
 	}
 
 	protected boolean isFinished() {
