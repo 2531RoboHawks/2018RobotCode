@@ -1,5 +1,9 @@
 package org.usfirst.frc.team2531.robot.commands;
 
+import org.usfirst.frc.team2531.robot.OI;
+import org.usfirst.frc.team2531.robot.Robot;
+import org.usfirst.frc.team2531.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -7,30 +11,35 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AxisLift extends Command {
 
-    public AxisLift() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
+	public AxisLift() {
+		requires(Robot.lift);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+	protected void initialize() {
+		System.out.println("-! Axis Lift");
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
+	protected void execute() {
+		double pow = OI.gamepad.getRawAxis(3);
+		if ((RobotMap.lowerliftlimit.get() && pow < 0) || (RobotMap.upperliftlimit.get() && pow > 0)) {
+			Robot.lift.stop();
+		} else {
+			Robot.lift.set(pow);
+		}
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	protected boolean isFinished() {
+		return false;
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	protected void end() {
+		Robot.lift.stop();
+		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		System.out.println("-! Axis Lift");
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	protected void interrupted() {
+		end();
+	}
 }
