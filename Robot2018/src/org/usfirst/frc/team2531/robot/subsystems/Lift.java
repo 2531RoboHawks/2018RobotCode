@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2531.robot.subsystems;
 
-import org.usfirst.frc.team2531.robot.commands.AxisLift;
+import org.usfirst.frc.team2531.robot.commands.HoldLift;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -15,7 +15,7 @@ public class Lift extends Subsystem {
 	private WPI_TalonSRX motor2 = new WPI_TalonSRX(6);
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new AxisLift());
+		setDefaultCommand(new HoldLift());
 	}
 
 	public void set(double power) {

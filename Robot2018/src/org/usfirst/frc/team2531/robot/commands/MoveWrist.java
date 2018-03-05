@@ -23,7 +23,6 @@ public class MoveWrist extends Command {
 
 	protected void execute() {
 		Robot.wrist.set(pow);
-		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 	}
 
 	protected boolean isFinished() {
@@ -31,8 +30,8 @@ public class MoveWrist extends Command {
 	}
 
 	protected void end() {
-		Robot.wrist.stop();
 		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
+		Robot.wrist.stop();
 		System.out.println("-! Move Wrist");
 	}
 

@@ -32,8 +32,8 @@ public class TimeDrive extends Command {
 	}
 
 	protected void execute() {
-		double t = pid.compute(RobotMap.imu.getAngleZ());// compute pid
-		Robot.drive.axisdrive(-powX, -powY, t);// move robot
+		double t = pid.compute(RobotMap.imu.getAngleX());// compute pid
+		Robot.drive.axisdrive(-powX, -powY, -t);// move robot
 		if (System.currentTimeMillis() > endTime)// check to see if time is up
 			end = true;
 	}

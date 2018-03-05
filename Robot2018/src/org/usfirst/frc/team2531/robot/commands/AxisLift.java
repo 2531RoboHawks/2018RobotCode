@@ -20,7 +20,7 @@ public class AxisLift extends Command {
 	}
 
 	protected void execute() {
-		double pow = OI.gamepad.getRawAxis(3);
+		double pow = OI.gamepad.getRawAxis(2);
 		if ((RobotMap.lowerliftlimit.get() && pow < 0) || (RobotMap.upperliftlimit.get() && pow > 0)) {
 			Robot.lift.stop();
 		} else {

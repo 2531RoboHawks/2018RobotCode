@@ -27,7 +27,6 @@ public class MoveLift extends Command {
 		} else {
 			Robot.lift.set(pow);
 		}
-		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
 	}
 
 	protected boolean isFinished() {
@@ -35,8 +34,8 @@ public class MoveLift extends Command {
 	}
 
 	protected void end() {
-		Robot.lift.stop();
 		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
+		Robot.lift.stop();
 		System.out.println("-! Move Lift");
 	}
 

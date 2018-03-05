@@ -29,8 +29,8 @@ public class Turn2Angle extends Command {
 	}
 
 	protected void execute() {
-		double p = pid.compute(RobotMap.imu.getAngleZ());// compute pid algorithm
-		Robot.drive.axisdrive(0, 0, p);// move robot
+		double p = pid.compute(RobotMap.imu.getAngleX());// compute pid algorithm
+		Robot.drive.axisdrive(0, 0, -p);// move robot
 	}
 
 	protected boolean isFinished() {

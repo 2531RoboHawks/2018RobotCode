@@ -26,36 +26,17 @@ public class AutoPicker extends Command {
 	protected void execute() {
 		System.out.println("Driver: " + ds + " Switch 1:" + RobotMap.gameData.charAt(0) + " Scale:"
 				+ RobotMap.gameData.charAt(1) + " Switch 2:" + RobotMap.gameData.charAt(2));
-		if (RobotMap.gameData.charAt(1) == 'R') {
-			// right
-			switch (ds) {
-			case 1:
-				c = new Driver1(false);
-				break;
-			case 2:
-				c = new Driver2(false);
-				break;
-			case 3:
-				c = new Driver3(false);
-				break;
-			default:
-
-			}
-		} else {
-			// left
-			switch (ds) {
-			case 1:
-				c = new Driver1(true);
-				break;
-			case 2:
-				c = new Driver2(true);
-				break;
-			case 3:
-				c = new Driver3(true);
-				break;
-			default:
-
-			}
+		switch (ds) {
+		case 1:
+			c = new Driver1(RobotMap.gameData);
+			break;
+		case 2:
+			c = new Driver2(RobotMap.gameData);
+			break;
+		case 3:
+			c = new Driver3(RobotMap.gameData);
+			break;
+		default:
 		}
 		if (c != null) {
 			c.start();

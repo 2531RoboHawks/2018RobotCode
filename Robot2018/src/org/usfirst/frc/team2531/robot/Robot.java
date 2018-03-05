@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2531.robot;
 
 import org.usfirst.frc.team2531.robot.commands.AutoPicker;
+import org.usfirst.frc.team2531.robot.commands.MoveArm;
 import org.usfirst.frc.team2531.robot.commands.TimeDrive;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team2531.robot.subsystems.Grabber;
@@ -41,7 +42,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.cam = new Vision(160, 120);// create camera
 		// set encoder scales
 		RobotMap.liftencoder.setDistancePerPulse(0.1);
-		RobotMap.wristencoder.setDistancePerPulse(1);
+		RobotMap.wristencoder.setDistancePerPulse(0.5);
 		// reset encoders
 		RobotMap.liftencoder.reset();
 		RobotMap.wristencoder.reset();
@@ -68,6 +69,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		RobotMap.cam.showLive();// show the camera feed
 		updateSmartDashboard();// update the values on the dash
+		readMouse();
 	}
 
 	@Override
@@ -76,6 +78,9 @@ public class Robot extends IterativeRobot {
 		RobotMap.cam.setRes(640, 480);// set to larger resolution for vision tracking
 		RobotMap.imu.reset();// reset gyro before the robot starts moving
 		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();// game data retreval
+		// reset encoders
+		RobotMap.liftencoder.reset();
+		RobotMap.wristencoder.reset();
 		// get encoder positions;
 		RobotMap.liftpos = RobotMap.liftencoder.getDistance();
 		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
@@ -90,6 +95,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		updateSmartDashboard();// update the values on the dash
+		readMouse();
 	}
 
 	@Override
@@ -109,11 +115,13 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		RobotMap.cam.showLive();// show the camera feed
 		updateSmartDashboard();// update the values on the dash
+		readMouse();
 	}
 
 	@Override
 	public void testPeriodic() {
 		updateSmartDashboard();// update the values on the dash
+		readMouse();
 	}
 
 	public void initSmartDashboard() {
@@ -124,6 +132,7 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Driver2", new AutoPicker(2));
 		auto.addObject("Driver3", new AutoPicker(3));
 		auto.addObject("Baseline", new TimeDrive(2000, 1, 0));
+		auto.addObject("Test Arm", new MoveArm(80, 80));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y
@@ -139,6 +148,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("P", RobotMap.p);
 		SmartDashboard.putNumber("I", RobotMap.i);
 		SmartDashboard.putNumber("D", RobotMap.d);
+		// mouse
+		SmartDashboard.putNumber("X", RobotMap.mousey);
+		SmartDashboard.putNumber("Y", RobotMap.mousex);
 	}
 
 	public void updateSmartDashboard() {
@@ -160,6 +172,18 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("P", RobotMap.p);
 		SmartDashboard.putNumber("I", RobotMap.i);
 		SmartDashboard.putNumber("D", RobotMap.d);
+		// mouse
+		SmartDashboard.putNumber("X", RobotMap.mousey);
+		SmartDashboard.putNumber("Y", RobotMap.mousex);
 		System.gc();// clean memory for camera
+	}
+
+	public void readMouse() {
+		// Controller[] controllers =
+		// ControllerEnvironment.getDefaultEnvironment().getControllers();
+		// controllers[0].poll();
+		// Component[] components = controllers[0].getComponents();
+		// RobotMap.mousex += components[8].getPollData() / 200;
+		// RobotMap.mousey += components[9].getPollData() / 200;
 	}
 }

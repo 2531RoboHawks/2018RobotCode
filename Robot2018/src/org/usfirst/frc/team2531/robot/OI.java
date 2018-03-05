@@ -13,7 +13,7 @@ public class OI {
 	public static Joystick stick = new Joystick(0);
 	public static Joystick gamepad = new Joystick(1);
 
-	private static JoystickButton open = new JoystickButton(stick, 2);
+	private static JoystickButton open = new JoystickButton(stick, 3);
 	private static JoystickButton close = new JoystickButton(stick, 4);
 
 	private static JoystickButton A = new JoystickButton(gamepad, 1);
@@ -27,11 +27,11 @@ public class OI {
 	// lift 0-2000
 
 	public OI() {
-		Y.whileHeld(new MoveLift(0.8));
-		A.whileHeld(new MoveLift(-0.4));
-		L1.whileHeld(new MoveWrist(-0.5));
-		R1.whileHeld(new MoveWrist(0.5));
-		X.whileHeld(new HoldLift());
+		X.whileHeld(new MoveLift(0.8));
+		A.whileHeld(new MoveLift(-0.2));
+		Y.whileHeld(new MoveWrist(0.8));
+		B.whileHeld(new MoveWrist(-0.8));
+		R1.whileHeld(new HoldLift());
 		open.whileHeld(new MoveGrabber(true));
 		close.whileHeld(new MoveGrabber(false));
 	}

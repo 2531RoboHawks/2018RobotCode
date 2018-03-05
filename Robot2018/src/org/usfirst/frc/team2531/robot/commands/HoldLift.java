@@ -13,7 +13,7 @@ public class HoldLift extends Command {
 
 	private double enc = 0;
 	private boolean set = false;
-	private PID pid = new PID(0.008, 0, 0, 0);
+	private PID pid = new PID(0, 0, 0, 0);
 
 	public HoldLift() {
 		requires(Robot.lift);
@@ -28,7 +28,7 @@ public class HoldLift extends Command {
 	protected void initialize() {
 		System.out.println("-> Hold Lift");
 		pid.setOnTargetCount(10);
-		pid.setOnTargetOffset(20);
+		pid.setOnTargetOffset(2);
 		pid.setOutputLimits(0, 0.8);
 		if (set) {
 			RobotMap.liftpos = enc;
@@ -37,9 +37,9 @@ public class HoldLift extends Command {
 	}
 
 	protected void execute() {
-		pid.setTunings(RobotMap.p, RobotMap.i, RobotMap.d);
 		double pow = pid.compute(RobotMap.liftencoder.getDistance());
-		if ((RobotMap.lowerliftlimit.get() && pow < 0) || (RobotMap.upperliftlimit.get() && pow > 0)) {
+		if ((RobotMap.lowerliftlimit.get() && pow < 0) || (RobotMap.upperliftlimit.get() && pow > 0)
+				|| pid.onTarget()) {
 			Robot.lift.stop();
 		} else {
 			Robot.lift.set(pow);
