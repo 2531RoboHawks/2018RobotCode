@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2531.robot;
 
 import org.usfirst.frc.team2531.robot.commands.AutoPicker;
-import org.usfirst.frc.team2531.robot.commands.MoveArm;
+import org.usfirst.frc.team2531.robot.commands.MoveArmTo;
 import org.usfirst.frc.team2531.robot.commands.TimeDrive;
 import org.usfirst.frc.team2531.robot.subsystems.DriveSystem;
 import org.usfirst.frc.team2531.robot.subsystems.Grabber;
@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
 		System.out.println("# Autonomous");
 		RobotMap.cam.setRes(640, 480);// set to larger resolution for vision tracking
 		RobotMap.imu.reset();// reset gyro before the robot starts moving
-		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();// game data retreval
+		RobotMap.gameData = DriverStation.getInstance().getGameSpecificMessage();// game data retrieval
 		// reset encoders
 		RobotMap.liftencoder.reset();
 		RobotMap.wristencoder.reset();
@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Driver2", new AutoPicker(2));
 		auto.addObject("Driver3", new AutoPicker(3));
 		auto.addObject("Baseline", new TimeDrive(2000, 1, 0));
-		auto.addObject("Test Arm", new MoveArm(80, 80));
+		auto.addObject("Test Arm", new MoveArmTo(80, 80));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
 		SmartDashboard.putNumber("AngleX", RobotMap.imu.getAngleX());// print gyro x
 		SmartDashboard.putNumber("AngleY", RobotMap.imu.getAngleY());// print gyro y

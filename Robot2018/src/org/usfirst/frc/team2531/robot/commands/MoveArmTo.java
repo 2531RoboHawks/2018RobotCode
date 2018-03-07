@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class MoveArm extends CommandGroup {
+public class MoveArmTo extends CommandGroup {
 
-	public MoveArm(double arm, double wrist) {
+	public MoveArmTo(double arm, double wrist) {
 		addSequential(new HoldLift(arm), 1);
 		addParallel(new HoldWrist(wrist));
 	}
