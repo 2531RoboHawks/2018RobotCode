@@ -151,6 +151,11 @@ public class Robot extends IterativeRobot {
 		// mouse
 		SmartDashboard.putNumber("X", RobotMap.mousey);
 		SmartDashboard.putNumber("Y", RobotMap.mousex);
+		// add auto times and angles to dashboard
+		SmartDashboard.putNumber("Time 1", RobotMap.time1);
+		SmartDashboard.putNumber("Time 2", RobotMap.time2);
+		SmartDashboard.putNumber("Time 3", RobotMap.time3);
+		SmartDashboard.putNumber("Time 4", RobotMap.time4);
 	}
 
 	public void updateSmartDashboard() {
