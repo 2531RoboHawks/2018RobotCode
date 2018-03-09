@@ -9,12 +9,18 @@ public class Driver2 extends CommandGroup {
 
 	public Driver2(String data) {
 		// switch
-		if (data.charAt(0) == 'R') {
-			addSequential(new TimeDrive(1000, 0, 1));
-			addSequential(new TimeDrive(1000, 0.5, 0));
-		} else if (data.charAt(0) == 'L') {
-			addSequential(new TimeDrive(1000, 0, -1));
-			addSequential(new TimeDrive(1000, 0.5, 0));
+		if (data.charAt(0) == 'L') {
+			addSequential(new MoveGrabber(false));
+			addSequential(new TimeDrive(2000, 0, 1));
+			addParallel(new MoveArmTo(100, 100));
+			addSequential(new TimeDrive(2000, 0.5, 0));
+			addSequential(new MoveGrabber(true));
+		} else if (data.charAt(0) == 'R') {
+			addSequential(new MoveGrabber(false));
+			addSequential(new TimeDrive(2000, 0, -1));
+			addParallel(new MoveArmTo(100, 100));
+			addSequential(new TimeDrive(2000, 0.5, 0));
+			addSequential(new MoveGrabber(true));
 		}
 
 		// scale
