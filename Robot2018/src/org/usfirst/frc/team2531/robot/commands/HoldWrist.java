@@ -6,9 +6,6 @@ import org.usfirst.frc.team2531.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import frclib.pid.PID;
 
-/**
- *
- */
 public class HoldWrist extends Command {
 
 	private double enc = 0;
@@ -38,7 +35,11 @@ public class HoldWrist extends Command {
 
 	protected void execute() {
 		double pow = pid.compute(RobotMap.wristencoder.getDistance());
-		Robot.wrist.set(-pow);
+		if (!pid.onTarget()) {
+			Robot.wrist.set(-pow);
+		} else {
+			Robot.wrist.stop();
+		}
 	}
 
 	protected boolean isFinished() {

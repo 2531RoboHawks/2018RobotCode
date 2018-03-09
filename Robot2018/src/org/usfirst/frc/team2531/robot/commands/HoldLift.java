@@ -13,7 +13,7 @@ public class HoldLift extends Command {
 
 	private double enc = 0;
 	private boolean set = false;
-	private PID pid = new PID(0, 0, 0, 0);
+	private PID pid = new PID(0.05, 0, 0.05, 0);
 
 	public HoldLift() {
 		requires(Robot.lift);

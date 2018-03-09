@@ -19,16 +19,8 @@ public class RobotMap {
 
 	public static double liftpos = 0;
 	public static double wristpos = 0;
+	
 
 	public static double mousex = 0;
 	public static double mousey = 0;
-
-	public static double p = 0.05;
-	public static double i = 0;
-	public static double d = 0.05;
-
-	public static long time1 = 0;
-	public static long time2 = 0;
-	public static long time3 = 0;
-	public static long time4 = 0;
 }

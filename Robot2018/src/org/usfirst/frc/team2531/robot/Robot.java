@@ -144,18 +144,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos); // print lift setpoint
 		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());// print limit switch lift down
 		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());// print limit switch lift up
-		// add PID for lift to the dashboard
-		SmartDashboard.putNumber("P", RobotMap.p);
-		SmartDashboard.putNumber("I", RobotMap.i);
-		SmartDashboard.putNumber("D", RobotMap.d);
 		// mouse
 		SmartDashboard.putNumber("X", RobotMap.mousey);
 		SmartDashboard.putNumber("Y", RobotMap.mousex);
-		// add auto times and angles to dashboard
-		SmartDashboard.putNumber("Time 1", RobotMap.time1);
-		SmartDashboard.putNumber("Time 2", RobotMap.time2);
-		SmartDashboard.putNumber("Time 3", RobotMap.time3);
-		SmartDashboard.putNumber("Time 4", RobotMap.time4);
 	}
 
 	public void updateSmartDashboard() {
@@ -169,14 +160,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Lift Position", RobotMap.liftpos); // print lift setpoint
 		SmartDashboard.putBoolean("Lift Down", RobotMap.lowerliftlimit.get());// print limit switch lift down
 		SmartDashboard.putBoolean("Lift Up", RobotMap.upperliftlimit.get());// print limit switch lift up
-		// get PID values for lift
-		RobotMap.p = SmartDashboard.getNumber("P", 0);
-		RobotMap.i = SmartDashboard.getNumber("I", 0);
-		RobotMap.d = SmartDashboard.getNumber("D", 0);
-		// print PID for lift for easy tuning
-		SmartDashboard.putNumber("P", RobotMap.p);
-		SmartDashboard.putNumber("I", RobotMap.i);
-		SmartDashboard.putNumber("D", RobotMap.d);
 		// mouse
 		SmartDashboard.putNumber("X", RobotMap.mousey);
 		SmartDashboard.putNumber("Y", RobotMap.mousex);
