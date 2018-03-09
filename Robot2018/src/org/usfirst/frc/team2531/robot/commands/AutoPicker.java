@@ -20,12 +20,14 @@ public class AutoPicker extends Command {
 
 	protected void initialize() {
 		System.out.println("-> AutoPicker");
-		System.out.println("GameData: " + RobotMap.gameData);
+		System.out.println("Driver " + ds);
+		System.out.println("Switch " + RobotMap.gameData.charAt(0));
+		System.out.println("Scale " + RobotMap.gameData.charAt(1));
+		System.out.println("Switch Opponent " + RobotMap.gameData.charAt(2));
+		System.out.println("Raw Data " + RobotMap.gameData);
 	}
 
 	protected void execute() {
-		System.out.println("Driver: " + ds + " Switch 1:" + RobotMap.gameData.charAt(0) + " Scale:"
-				+ RobotMap.gameData.charAt(1) + " Switch 2:" + RobotMap.gameData.charAt(2));
 		switch (ds) {
 		case 1:
 			c = new Driver1(RobotMap.gameData);
