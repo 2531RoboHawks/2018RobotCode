@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoPicker extends Command {
 
-	boolean done = false;
+	boolean done = false, scale = false;
 	int ds = 0;
 
 	Command c = null;
 
-	public AutoPicker(int ds) {
+	public AutoPicker(int ds, boolean scale) {
 		this.ds = ds;
+		this.scale = scale;
 	}
 
 	protected void initialize() {
@@ -28,17 +29,32 @@ public class AutoPicker extends Command {
 	}
 
 	protected void execute() {
-		switch (ds) {
-		case 1:
-			c = new Driver1(RobotMap.gameData);
-			break;
-		case 2:
-			c = new Driver2(RobotMap.gameData);
-			break;
-		case 3:
-			c = new Driver3(RobotMap.gameData);
-			break;
-		default:
+		if (scale) {
+			switch (ds) {
+			case 1:
+				c = new Driver1(RobotMap.gameData, true);
+				break;
+			case 2:
+				c = new Driver2(RobotMap.gameData, true);
+				break;
+			case 3:
+				c = new Driver3(RobotMap.gameData, true);
+				break;
+			default:
+			}
+		} else {
+			switch (ds) {
+			case 1:
+				c = new Driver1(RobotMap.gameData, false);
+				break;
+			case 2:
+				c = new Driver2(RobotMap.gameData, false);
+				break;
+			case 3:
+				c = new Driver3(RobotMap.gameData, false);
+				break;
+			default:
+			}
 		}
 		if (c != null) {
 			c.start();

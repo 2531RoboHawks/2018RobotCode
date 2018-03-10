@@ -128,9 +128,12 @@ public class Robot extends IterativeRobot {
 		auto = new SendableChooser<Command>();// initalize the auto chooser
 		// add command options for auto
 		auto.addDefault("No Auto", null);
-		auto.addObject("Driver1", new AutoPicker(1));
-		auto.addObject("Driver2", new AutoPicker(2));
-		auto.addObject("Driver3", new AutoPicker(3));
+		auto.addObject("Driver 1", new AutoPicker(1, false));
+		auto.addObject("Driver 2", new AutoPicker(2, false));
+		auto.addObject("Driver 3", new AutoPicker(3, false));
+		auto.addObject("Driver 1 Scale", new AutoPicker(1, true));
+		auto.addObject("Driver 2 Scale", new AutoPicker(2, true));
+		auto.addObject("Driver 3 Scale", new AutoPicker(3, true));
 		auto.addObject("Baseline", new TimeDrive(2000, 1, 0));
 		auto.addObject("Test Arm", new MoveArmTo(80, 80));
 		SmartDashboard.putData("Autonomous Select", auto);// adds the auto chooser to the smartdashboard
