@@ -34,12 +34,9 @@ public class HoldWrist extends Command {
 	}
 
 	protected void execute() {
+		pid.setSetpoint(RobotMap.wristpos);
 		double pow = pid.compute(RobotMap.wristencoder.getDistance());
-		if (!pid.onTarget()) {
-			Robot.wrist.set(-pow);
-		} else {
-			Robot.wrist.stop();
-		}
+		Robot.wrist.set(-pow);
 	}
 
 	protected boolean isFinished() {
@@ -51,6 +48,9 @@ public class HoldWrist extends Command {
 
 	protected void end() {
 		Robot.wrist.stop();
+		if (set) {
+			RobotMap.wristpos = RobotMap.wristencoder.getDistance();
+		}
 		System.out.println("-! Hold Wrist");
 	}
 

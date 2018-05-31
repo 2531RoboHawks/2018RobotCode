@@ -30,8 +30,8 @@ public class MoveWrist extends Command {
 	}
 
 	protected void end() {
-		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 		Robot.wrist.stop();
+		RobotMap.wristpos = RobotMap.wristencoder.getDistance();
 		System.out.println("-! Move Wrist");
 	}
 
