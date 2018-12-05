@@ -3,10 +3,11 @@ package org.usfirst.frc.team2531.robot;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import frclib.sensors.ADIS16448;
-import frclib.vision.Vision;
+import frclib.visionold.Vision;
 
 public class RobotMap {
 	public static ADIS16448 imu = new ADIS16448(); // gyro and accel class
+	@SuppressWarnings("deprecation")
 	public static Vision cam; // vision class
 	public static double heading = 0;
 	public static double speedx = 0;
@@ -19,7 +20,6 @@ public class RobotMap {
 
 	public static double liftpos = 0;
 	public static double wristpos = 0;
-	
 
 	public static double mousex = 0;
 	public static double mousey = 0;
